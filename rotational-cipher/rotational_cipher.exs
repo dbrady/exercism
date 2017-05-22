@@ -7,8 +7,8 @@ defmodule RotationalCipher do
   "Nggnpx ng qnja"
   """
   @spec rotate(text :: String.t(), shift :: integer) :: String.t()
-  def rotate(<<string :: binary>>, shift) when shift == 0 or shift == 26 do
-    string
+  def rotate(text, shift) when shift == 0 or shift == 26 do
+    text
   end
 
   def rotate(<<char :: 8, tail :: binary>>, shift) do
