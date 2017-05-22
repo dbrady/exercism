@@ -22,7 +22,7 @@ defmodule RotationalCipher do
     text
   end
 
-  def rotate_char(char, shift) when char in ?A..?Z or char in ?a..?z do
+  def rotate_char(char, shift) when (char &&& 95) in ?A..?Z do
     rem(((char &&& 95) - ?A) + shift, 26) + ?A ||| (char &&& 32)
   end
 
