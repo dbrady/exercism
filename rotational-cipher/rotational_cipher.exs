@@ -1,4 +1,6 @@
 defmodule RotationalCipher do
+  use Bitwise
+
   @doc """
   Given a plaintext and amount to shift by, return a rotated string.
 
@@ -15,16 +17,13 @@ defmodule RotationalCipher do
     <<rotate_char(char, shift)>> <> rotate(tail, shift)
   end
 
-  def rotate(<<tail :: binary>>, shift) do
-    tail
+  # This essentially only handles the empty/end-of-string case.
+  def rotate(text, shift) do
+    text
   end
 
-  def rotate_char(char, shift) when char in ?A..?Z do
-    rem((char - ?A) + shift, 26) + ?A
-  end
-
-  def rotate_char(char, shift) when char in ?a..?z do
-    rem((char - ?a) + shift, 26) + ?a
+  def rotate_char(char, shift) when char in ?A..?Z or char in ?a..?z do
+    rem(((char &&& 95) - ?A) + shift, 26) + ?A ||| (char &&& 32)
   end
 
   def rotate_char(char, _shift) do
