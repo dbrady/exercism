@@ -9,17 +9,12 @@ defmodule RotationalCipher do
   "Nggnpx ng qnja"
   """
   @spec rotate(text :: String.t(), shift :: integer) :: String.t()
-  def rotate(text, shift) when shift == 0 or shift == 26 do
+  def rotate(text, shift) when text == "" or shift == 0 or shift == 26 do
     text
   end
 
   def rotate(<<char :: 8, tail :: binary>>, shift) do
     <<rotate_char(char, shift)>> <> rotate(tail, shift)
-  end
-
-  # This essentially only handles the empty/end-of-string case.
-  def rotate(text, shift) do
-    text
   end
 
   def rotate_char(char, shift) when (char &&& 95) in ?A..?Z do
