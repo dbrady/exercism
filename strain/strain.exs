@@ -6,7 +6,6 @@ defmodule Strain do
   Do not use `Enum.filter`.
   """
   @spec keep(list :: list(any), fun :: ((any) -> boolean)) :: list(any)
-  def keep([], _fun), do: []
   def keep(list, fun) do
     # Enum.filter_map(list, fun, &(&1)) # WHAAAAAAT. It's not Enum.filter...
     for item <- list, fun.(item), do: item
@@ -19,7 +18,6 @@ defmodule Strain do
   Do not use `Enum.reject`.
   """
   @spec discard(list :: list(any), fun :: ((any) -> boolean)) :: list(any)
-  def discard([], _fun), do: []
   def discard(list, fun) do
     for item <- list, !fun.(item), do: item
   end
